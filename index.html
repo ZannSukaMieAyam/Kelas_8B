@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ocean 8B • Class Hub</title>
+<style>
+:root{--bg:#021522;--glass:rgba(7,48,67,.68);--line:rgba(133,232,255,.18);--text:#effcff;--muted:#9ec4d2;--cyan:#55e6ff;--blue:#3b8cff;--shadow:0 24px 70px rgba(0,0,0,.35)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at 15% 0%,rgba(0,217,255,.18),transparent 28%),radial-gradient(circle at 90% 20%,rgba(40,115,255,.15),transparent 26%),linear-gradient(160deg,#01101b,#032c41 48%,#01121e);overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:linear-gradient(115deg,transparent 35%,rgba(102,226,255,.03) 50%,transparent 65%);animation:shimmer 12s linear infinite}
+.app{max-width:560px;margin:auto;min-height:100vh;padding-bottom:100px;position:relative;z-index:2}
+header{position:sticky;top:0;z-index:20;padding:15px 18px;background:rgba(1,18,30,.76);backdrop-filter:blur(22px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.brand{cursor:pointer;user-select:none;font-size:19px;font-weight:900;letter-spacing:.4px}.brand span{color:var(--cyan)}.sub{font-size:10px;letter-spacing:2px;color:var(--muted);margin-top:3px}
+.sound{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;width:42px;height:42px;border-radius:14px;font-size:19px;cursor:pointer}
+main{padding:18px}.page{display:none;animation:pageIn .45s ease}.page.active{display:block}
+.hero{position:relative;overflow:hidden;padding:30px 24px;border-radius:30px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(10,95,125,.62),rgba(3,35,55,.72));box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.08);margin-bottom:16px}
+.hero:after{content:"";position:absolute;width:220px;height:220px;right:-80px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(85,230,255,.28),transparent 65%)}
+.eyebrow{font-size:10px;letter-spacing:2.4px;color:var(--cyan);font-weight:900}.hero h1{font-size:clamp(42px,12vw,64px);line-height:.95;margin:12px 0 14px;letter-spacing:-2px}.hero h1 span,h1 span{color:var(--cyan);text-shadow:0 0 28px rgba(85,230,255,.3)}
+h1{font-size:32px;letter-spacing:-1px;margin:8px 0 20px}.muted{color:var(--muted);font-size:13px;line-height:1.6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.wide{grid-column:1/-1}
+.card,.row{border:1px solid var(--line);background:linear-gradient(145deg,rgba(11,71,94,.7),rgba(3,31,47,.72));box-shadow:0 18px 45px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.055);backdrop-filter:blur(16px)}
+.card{padding:18px;border-radius:23px;transition:.25s}.card:hover{transform:translateY(-4px);border-color:rgba(85,230,255,.45)}.emoji{font-size:31px}
+.notice{border-left:3px solid var(--cyan);padding:14px 15px;margin-top:12px;background:rgba(0,0,0,.16);border-radius:14px}.tag{font-size:9px;letter-spacing:1.5px;color:var(--cyan);font-weight:900;display:block;margin-bottom:5px}
+.list{display:grid;gap:12px}.row{padding:17px;border-radius:18px;display:flex;align-items:center;gap:12px;transition:.25s}.row:hover{transform:translateX(4px);border-color:rgba(85,230,255,.38)}.row strong{display:block}.row small{color:var(--muted);display:block;margin-top:4px}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:12px}.photo{height:160px;border-radius:22px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:48px;background:linear-gradient(135deg,#08748d,#062b47)}
+.quote{text-align:center;padding:22px;font-style:italic;color:#c9f4ff;margin-top:13px}
+.input{width:100%;padding:14px 15px;margin:6px 0;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.2);color:#fff;outline:none;font:inherit}.input:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(85,230,255,.1)}
+.action{width:100%;padding:14px;border:0;border-radius:14px;background:linear-gradient(135deg,#1bcce8,#3d73ff);color:#fff;font-weight:800;cursor:pointer;box-shadow:0 12px 30px rgba(31,123,255,.18);transition:.25s}.action:hover{transform:translateY(-2px);filter:brightness(1.08)}.danger{background:linear-gradient(135deg,#b33146,#6d1e32)}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(1,17,28,.84);backdrop-filter:blur(22px);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);z-index:30}.nav button{border:0;background:none;color:#7fa4b0;font-size:11px;cursor:pointer}.nav button.active{color:var(--cyan)}.nav i{display:block;font-style:normal;font-size:22px;margin-bottom:3px}
+.bubbles span{position:fixed;bottom:-40px;border:1px solid rgba(131,234,255,.42);border-radius:50%;animation:up linear infinite;z-index:1;pointer-events:none}.bubbles span:nth-child(1){left:8%;width:18px;height:18px;animation-duration:12s}.bubbles span:nth-child(2){left:30%;width:9px;height:9px;animation-duration:8s}.bubbles span:nth-child(3){left:65%;width:25px;height:25px;animation-duration:15s}.bubbles span:nth-child(4){left:85%;width:12px;height:12px;animation-duration:10s}
+.seaweed{position:fixed;bottom:-8px;left:0;right:0;height:100px;z-index:1;pointer-events:none;opacity:.65;animation:weed 5s ease-in-out infinite alternate;background:radial-gradient(ellipse at 5% 100%,#087b68 0 10%,transparent 11%),radial-gradient(ellipse at 16% 100%,#0b9677 0 9%,transparent 10%),radial-gradient(ellipse at 30% 100%,#087b68 0 13%,transparent 14%),radial-gradient(ellipse at 48% 100%,#0b9677 0 10%,transparent 11%),radial-gradient(ellipse at 68% 100%,#087b68 0 14%,transparent 15%),radial-gradient(ellipse at 88% 100%,#0b9677 0 11%,transparent 12%)}
+.coral{position:fixed;bottom:2px;z-index:1;pointer-events:none;filter:drop-shadow(0 8px 12px rgba(0,0,0,.3));animation:coralSway 4s ease-in-out infinite alternate}.coral.left{left:4%;font-size:66px}.coral.right{right:4%;font-size:78px;animation-delay:1.5s}
+.fish{position:fixed;z-index:1;pointer-events:none;white-space:nowrap;filter:drop-shadow(0 7px 12px rgba(0,0,0,.32));animation:fishForward linear infinite}.f1{font-size:28px;top:25%;animation-duration:18s;animation-delay:-3s}.f2{font-size:48px;top:46%;animation-duration:25s;animation-delay:-11s}.f3{font-size:22px;top:65%;animation-duration:14s;animation-delay:-5s}.f4{font-size:34px;top:78%;animation-duration:30s;animation-delay:-17s}.f5{font-size:18px;top:35%;animation-duration:20s;animation-delay:-8s}.f6{font-size:62px;top:58%;animation-duration:36s;animation-delay:-24s}
+.jelly{position:fixed;right:4%;top:27%;font-size:45px;z-index:1;pointer-events:none;animation:jellyFloat 5s ease-in-out infinite}.shell{position:fixed;left:5%;top:18%;font-size:35px;z-index:1;pointer-events:none;animation:float 6s ease-in-out infinite}.star{position:fixed;right:14%;top:14%;font-size:28px;z-index:1;pointer-events:none;animation:spinFloat 8s linear infinite}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}@keyframes up{to{transform:translateY(-110vh) translateX(50px);opacity:0}}@keyframes fishForward{0%{transform:translateX(-18vw) translateY(0)}48%{transform:translateX(55vw) translateY(-22px)}100%{transform:translateX(118vw) translateY(10px)}}@keyframes weed{from{transform:skewX(-2deg) scaleY(.96)}to{transform:skewX(2deg) scaleY(1.04)}}@keyframes coralSway{from{transform:rotate(-2deg)}to{transform:rotate(2deg)}}@keyframes float{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-16px) rotate(5deg)}}@keyframes jellyFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-24px)}}@keyframes spinFloat{to{transform:rotate(360deg) translateY(-8px)}}@keyframes shimmer{to{transform:translateX(100%)}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="fish f1">🐠</div><div class="fish f2">🐟</div><div class="fish f3">🐡</div><div class="fish f4">🦈</div><div class="fish f5">🐬</div><div class="fish f6">🐳</div>
+<div class="jelly">🪼</div><div class="shell">🐚</div><div class="star">⭐</div><div class="coral left">🪸</div><div class="coral right">🪸</div><div class="seaweed"></div>
+<div class="bubbles"><span></span><span></span><span></span><span></span></div>
+<div class="app">
+<header><div><div class="brand" onclick="adminClick()">🌊 <span>OCEAN</span> 8B</div><div class="sub">ONE CLASS • ONE WAVE</div></div><button class="sound" onclick="toggleMusic()" id="sound">🔇</button></header>
+<main>
+<section id="home" class="page active"><div class="hero"><div class="eyebrow">WELCOME TO OCEAN HUB</div><h1>KELAS<br><span>8B</span> 🌊</h1><p class="muted">Tempat informasi, tugas, jadwal, dan kenangan kelas 8B dalam satu dunia laut yang hidup.</p><button class="action" onclick="requestNotifications()">🔔 Aktifkan Notifikasi</button></div>
+<div class="grid"><div class="card" onclick="go('structure')"><div class="emoji">👥</div><h3>Struktur Kelas</h3><p class="muted">Lihat pengurus kelas.</p></div><div class="card" onclick="go('piket')"><div class="emoji">🧹</div><h3>Jadwal Piket</h3><p class="muted">Jadwal kebersihan.</p></div><div class="card wide"><div class="emoji">📢</div><h3>Pengumuman Terbaru</h3><div id="announcement"><p class="muted">Belum ada pengumuman.</p></div></div></div><div class="card quote">“Satu kelas, satu gelombang, satu tujuan. 🌊”</div></section>
+<section id="structure" class="page"><div class="eyebrow">OCEAN TEAM</div><h1>Struktur Kelas 👥</h1><div class="list"><div class="row">👑 <div><strong>Ketua</strong><small id="dataKetua">Zaki</small></div></div><div class="row">⭐ <div><strong>Wakil</strong><small id="dataWakil">Fadlan</small></div></div><div class="row">📝 <div><strong>Sekretaris</strong><small id="dataSekretaris">Dea & Zalfa</small></div></div><div class="row">💰 <div><strong>Bendahara</strong><small id="dataBendahara">Novia & Habibah</small></div></div><div class="row">🧹 <div><strong>Kebersihan</strong><small id="dataKebersihan">Asyrof & Rere</small></div></div><div class="row">🕌 <div><strong>Keagamaan</strong><small id="dataKeagamaan">Khansa & Azam</small></div></div><div class="row">📚 <div><strong>Literasi</strong><small id="dataLiterasi">Azmi & Naura</small></div></div></div></section>
+<section id="piket" class="page"><div class="eyebrow">CLEAN CLASS</div><h1>Jadwal Piket 🧹</h1><div class="list"><div class="row"><div><strong>Senin</strong><small id="dataSenin">Isi nama anggota</small></div></div><div class="row"><div><strong>Selasa</strong><small id="dataSelasa">Isi nama anggota</small></div></div><div class="row"><div><strong>Rabu</strong><small id="dataRabu">Isi nama anggota</small></div></div><div class="row"><div><strong>Kamis</strong><small id="dataKamis">Isi nama anggota</small></div></div><div class="row"><div><strong>Jumat</strong><small id="dataJumat">Isi nama anggota</small></div></div><div class="row"><div><strong>Sabtu</strong><small id="dataSabtu">Isi nama anggota</small></div></div></div></section>
+<section id="gallery" class="page"><div class="eyebrow">MEMORIES</div><h1>Foto Bersama 📸</h1><div class="gallery"><div class="photo">🌊</div><div class="photo">📸</div><div class="photo">🐚</div><div class="photo">🐠</div></div><p class="muted">Nanti foto asli bisa ditambahkan.</p></section>
+<section id="admin" class="page"><div class="eyebrow">CONTROL CENTER</div><h1>Admin 👑</h1><div id="adminLogin" class="card"><h3>🔐 Login Admin</h3><input class="input" id="adminPassword" type="password" placeholder="Masukkan password admin"><button class="action" onclick="loginAdmin()">Masuk ke Panel Admin</button></div>
+<div id="adminPanel" style="display:none"><div class="card"><h3>📢 Kelola Pengumuman</h3><input class="input" id="title" placeholder="Judul pengumuman"><textarea class="input" id="msg" placeholder="Isi pesan..." rows="5"></textarea><button class="action" onclick="publish()">📢 Publikasikan / Ubah Pengumuman</button><button class="action" style="margin-top:8px" onclick="sendAnnouncement()">🔔 SEND ke Semua HP</button><button class="action danger" style="margin-top:8px" onclick="deleteAnnouncement()">🗑️ Hapus Pengumuman</button></div>
+<div class="card" style="margin-top:12px"><h3>👥 Ubah Semua Data Struktur</h3><input class="input" id="ketua" placeholder="Ketua" value="Zaki"><input class="input" id="wakil" placeholder="Wakil" value="Fadlan"><input class="input" id="sekretaris" placeholder="Sekretaris" value="Dea & Zalfa"><input class="input" id="bendahara" placeholder="Bendahara" value="Novia & Habibah"><input class="input" id="kebersihan" placeholder="Kebersihan" value="Asyrof & Rere"><input class="input" id="keagamaan" placeholder="Keagamaan" value="Khansa & Azam"><input class="input" id="literasi" placeholder="Literasi" value="Azmi & Naura"><button class="action" onclick="saveStructure()">💾 Simpan Perubahan Data</button></div>
+<div class="card" style="margin-top:12px"><h3>🧹 Ubah Semua Jadwal Piket</h3><input class="input" id="senin" placeholder="Senin"><input class="input" id="selasa" placeholder="Selasa"><input class="input" id="rabu" placeholder="Rabu"><input class="input" id="kamis" placeholder="Kamis"><input class="input" id="jumat" placeholder="Jumat"><input class="input" id="sabtu" placeholder="Sabtu"><button class="action" onclick="savePiket()">💾 Simpan Jadwal Piket</button></div></div></section>
+</main>
+<nav class="nav"><button class="active" onclick="go('home',this)"><i>🏠</i>Home</button><button onclick="go('structure',this)"><i>👥</i>Kelas</button><button onclick="go('gallery',this)"><i>📸</i>Galeri</button><button onclick="go('piket',this)"><i>🧹</i>Piket</button></nav>
+</div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {getAnalytics} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+import {getFirestore,doc,setDoc,getDoc,deleteDoc} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {getMessaging,getToken,onMessage} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging.js";
+import {getFunctions,httpsCallable} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-functions.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyBmPpf2uhHSpY61JRo7tjKp4ZOs1UzRwYg",
+  authDomain: "zannmaulana68.firebaseapp.com",
+  projectId: "zannmaulana68",
+  storageBucket: "zannmaulana68.firebasestorage.app",
+  messagingSenderId: "639314567240",
+  appId: "1:639314567240:web:648edd29852dbccabfb87d",
+  measurementId: "G-JD1QKNE1VG"
+};
+const app=initializeApp(firebaseConfig);try{getAnalytics(app)}catch(e){}const db=getFirestore(app);const messaging=getMessaging(app);
+const functions=getFunctions(app,"asia-southeast1");
+window.firebaseDB={db,doc,setDoc,getDoc,deleteDoc,messaging,functions,getToken,onMessage,httpsCallable};
+</script>
+<script>
+const ADMIN_PASSWORD="zanss123";let adminClicks=0,adminClickTimer;
+function go(id,b){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));if(b)b.classList.add('active');scrollTo(0,0)}
+function adminClick(){adminClicks++;clearTimeout(adminClickTimer);adminClickTimer=setTimeout(()=>adminClicks=0,2500);if(adminClicks>=5){adminClicks=0;go('admin');document.getElementById('adminLogin').style.display='block';document.getElementById('adminPanel').style.display='none';document.getElementById('adminPassword').value=''}}
+function loginAdmin(){if(document.getElementById('adminPassword').value===ADMIN_PASSWORD){document.getElementById('adminLogin').style.display='none';document.getElementById('adminPanel').style.display='block';loadData()}else alert('Password admin salah!')}
+async function publish(){const t=document.getElementById('title').value.trim(),m=document.getElementById('msg').value.trim();if(!t||!m)return alert('Isi judul dan pesan dulu!');const data={title:t,msg:m,updatedAt:Date.now()};localStorage.setItem('announcement',JSON.stringify(data));if(window.firebaseDB){try{await window.firebaseDB.setDoc(window.firebaseDB.doc(window.firebaseDB.db,'class8b','announcement'),data)}catch(e){console.error(e)}}renderAnnouncement();alert('Pengumuman berhasil disimpan!')}
+async function sendAnnouncement(){
+  const t=document.getElementById('title').value.trim(),m=document.getElementById('msg').value.trim();
+  if(!t||!m)return alert('Isi judul dan pesan dulu!');
+  if(!window.firebaseDB)return alert('Firebase belum siap.');
+  try{
+    const send=window.firebaseDB.httpsCallable(window.firebaseDB.functions,'sendAnnouncement');
+    const result=await send({title:t,body:m});
+    alert('Notifikasi berhasil dikirim ke '+(result.data?.sent||0)+' perangkat! 🔔');
+  }catch(e){
+    console.error(e);
+    alert('Gagal mengirim notifikasi: '+(e.message||e));
+  }
+}
+async function deleteAnnouncement(){if(!confirm('Yakin ingin menghapus pengumuman?'))return;localStorage.removeItem('announcement');if(window.firebaseDB){try{await window.firebaseDB.deleteDoc(window.firebaseDB.doc(window.firebaseDB.db,'class8b','announcement'))}catch(e){console.error(e)}}renderAnnouncement();document.getElementById('title').value='';document.getElementById('msg').value=''}
+function renderAnnouncement(){const d=JSON.parse(localStorage.getItem('announcement')||'null'),box=document.getElementById('announcement');box.innerHTML=d?'<div class="notice"><span class="tag">INFO BARU</span><b>'+esc(d.title)+'</b><p>'+esc(d.msg)+'</p></div>':'<p class="muted">Belum ada pengumuman.</p>'}
+function saveStructure(){['ketua','wakil','sekretaris','bendahara','kebersihan','keagamaan','literasi'].forEach(x=>localStorage.setItem('data_'+x,document.getElementById(x).value));loadData();alert('Data struktur berhasil diubah!')}
+function savePiket(){['senin','selasa','rabu','kamis','jumat','sabtu'].forEach(x=>localStorage.setItem('data_'+x,document.getElementById(x).value));loadData();alert('Jadwal piket berhasil diubah!')}
+async function loadData(){if(window.firebaseDB){try{const s=await window.firebaseDB.getDoc(window.firebaseDB.doc(window.firebaseDB.db,'class8b','announcement'));if(s.exists())localStorage.setItem('announcement',JSON.stringify(s.data()))}catch(e){console.error(e)}}['ketua','wakil','sekretaris','bendahara','kebersihan','keagamaan','literasi'].forEach(x=>{const v=localStorage.getItem('data_'+x);if(v){document.getElementById(x).value=v;document.getElementById('data'+x[0].toUpperCase()+x.slice(1)).textContent=v}});['senin','selasa','rabu','kamis','jumat','sabtu'].forEach(x=>{const v=localStorage.getItem('data_'+x);if(v){document.getElementById(x).value=v;document.getElementById('data'+x[0].toUpperCase()+x.slice(1)).textContent=v}});const a=JSON.parse(localStorage.getItem('announcement')||'null');if(a){document.getElementById('title').value=a.title;document.getElementById('msg').value=a.msg}renderAnnouncement()}
+async function requestNotifications(){
+  if(!('Notification' in window)) return alert('Browser ini belum mendukung notifikasi.');
+  if(!window.firebaseDB) return alert('Firebase belum siap.');
+  try{
+    const permission=await Notification.requestPermission();
+    if(permission!=='granted') return alert('Izin notifikasi belum diberikan.');
+    const registration=await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+    const token=await window.firebaseDB.getToken(window.firebaseDB.messaging,{
+      vapidKey:'BLKooTjXSYSVwNjh7uPo1zE_2nYlffriznUU7XGSVErI7t2l0PexU2qdyeH9JKv996uyx4cJqYew-iJZnmSA_Bs',
+      serviceWorkerRegistration:registration
+    });
+    if(!token) return alert('Token notifikasi belum berhasil dibuat.');
+    await window.firebaseDB.setDoc(
+      window.firebaseDB.doc(window.firebaseDB.db,'fcmTokens',token),
+      {token:token,createdAt:Date.now(),userAgent:navigator.userAgent}
+    );
+    localStorage.setItem('fcmToken',token);
+    alert('Notifikasi berhasil diaktifkan! 🔔');
+  }catch(e){
+    console.error(e);
+    alert('Gagal mengaktifkan notifikasi. Pastikan aplikasi dibuka lewat HTTPS dan VAPID key sudah diisi.');
+  }
+}
+function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function toggleMusic(){alert('Masukkan file audio/background music jika ingin musik otomatis.');document.getElementById('sound').textContent='🔊'}
+renderAnnouncement();loadData();
+if(window.firebaseDB){
+  window.firebaseDB.onMessage(window.firebaseDB.messaging,(payload)=>{
+    const title=payload.notification?.title||'Pengumuman Ocean 8B';
+    const body=payload.notification?.body||'Ada pengumuman baru.';
+    if(Notification.permission==='granted') new Notification(title,{body});
+  });
+}
+</script>
+</body></html>
